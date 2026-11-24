@@ -1,0 +1,421 @@
+{
+  "users": [
+    {
+      "id": "admin-001",
+      "username": "admin",
+      "password_hash": "$2a$10$JAZCyV.VqE2feu692OCzYOjz0zaiifdKuLEtagJzYuc/EAEoEGwbi",
+      "role": "admin",
+      "full_name": "Barangay Administrator",
+      "contact": "09170000000",
+      "email": "",
+      "address": "",
+      "sex": "",
+      "age": null,
+      "profile_picture": "/uploads/admin-001_1795504230756.jpg",
+      "created_at": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-24T07:10:30.757Z"
+    },
+    {
+      "id": "w-001",
+      "username": "juan.delacruz",
+      "password_hash": "$2a$10$hUci.A9vHnPWEGWh8XonyeVKWdyWohJc6BKwKhxX1S0yXWv9ErM8C",
+      "role": "worker",
+      "full_name": "Juan Dela Cruz",
+      "contact": "09171234567",
+      "email": "juan.dc@email.com",
+      "address": "Purok 3, Sample Barangay",
+      "sex": "Male",
+      "age": 42,
+      "profile_picture": null,
+      "created_at": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    {
+      "id": "w-002",
+      "username": "maria.santos",
+      "password_hash": "$2a$10$hUci.A9vHnPWEGWh8XonyeVKWdyWohJc6BKwKhxX1S0yXWv9ErM8C",
+      "role": "worker",
+      "full_name": "Maria Santos",
+      "contact": "09189876543",
+      "email": "",
+      "address": "Sitio Maligaya",
+      "sex": "Female",
+      "age": 35,
+      "profile_picture": null,
+      "created_at": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    {
+      "id": "w-003",
+      "username": "pedro.reyes",
+      "password_hash": "$2a$10$hUci.A9vHnPWEGWh8XonyeVKWdyWohJc6BKwKhxX1S0yXWv9ErM8C",
+      "role": "worker",
+      "full_name": "Pedro Reyes",
+      "contact": "09201234567",
+      "email": "",
+      "address": "Purok 1",
+      "sex": "Male",
+      "age": 28,
+      "profile_picture": null,
+      "created_at": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    {
+      "id": "w-004",
+      "username": "ana.lopez",
+      "password_hash": "$2a$10$hUci.A9vHnPWEGWh8XonyeVKWdyWohJc6BKwKhxX1S0yXWv9ErM8C",
+      "role": "worker",
+      "full_name": "Ana Lopez",
+      "contact": "09155551234",
+      "email": "",
+      "address": "Purok 5",
+      "sex": "Female",
+      "age": 31,
+      "profile_picture": null,
+      "created_at": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    {
+      "id": "w-005",
+      "username": "roberto.garcia",
+      "password_hash": "$2a$10$hUci.A9vHnPWEGWh8XonyeVKWdyWohJc6BKwKhxX1S0yXWv9ErM8C",
+      "role": "worker",
+      "full_name": "Roberto Garcia",
+      "contact": "09301234567",
+      "email": "",
+      "address": "Sitio Riverside",
+      "sex": "Male",
+      "age": 45,
+      "profile_picture": null,
+      "created_at": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    {
+      "id": "w-006",
+      "username": "liza.mendoza",
+      "password_hash": "$2a$10$hUci.A9vHnPWEGWh8XonyeVKWdyWohJc6BKwKhxX1S0yXWv9ErM8C",
+      "role": "worker",
+      "full_name": "Liza Mendoza",
+      "contact": "09182223333",
+      "email": "",
+      "address": "Purok 2",
+      "sex": "Female",
+      "age": 26,
+      "profile_picture": null,
+      "created_at": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    {
+      "id": "7fa45bab-7ccd-41c5-a37c-67ed098db73c",
+      "username": "jgonzales",
+      "password_hash": "$2a$10$sBF56Pl0HDPgLM5ONYb2Juz27WshyyOfivJdYXMzOuJAX3ohI38zS",
+      "role": "worker",
+      "full_name": "James Gonzales",
+      "contact": "09633770234",
+      "email": "",
+      "address": "Baan 3km Butuan City",
+      "sex": "",
+      "age": null,
+      "profile_picture": "/uploads/7fa45bab-7ccd-41c5-a37c-67ed098db73c_1795503524412.jpg",
+      "created_at": "2026-11-24T06:58:02.116Z",
+      "updated_at": "2026-11-24T06:58:44.414Z"
+    }
+  ],
+  "profiles": {
+    "w-001": {
+      "skills": [
+        "Carpentry",
+        "Masonry",
+        "Roofing"
+      ],
+      "experience_years": 15,
+      "certifications": "TESDA NC II Carpentry",
+      "status": "Available",
+      "work_position": "Lead Carpenter",
+      "work_schedule": "Mon–Sat 7am–5pm",
+      "notes": "Can handle house renovations and extensions",
+      "consent_given": true,
+      "consent_date": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    "w-002": {
+      "skills": [
+        "Caregiving",
+        "Housekeeping",
+        "Elderly Care"
+      ],
+      "experience_years": 8,
+      "certifications": "TESDA NC II Caregiving",
+      "status": "Available",
+      "work_position": "Caregiver",
+      "work_schedule": "Flexible / Live-out preferred",
+      "notes": "",
+      "consent_given": true,
+      "consent_date": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    "w-003": {
+      "skills": [
+        "Electrical",
+        "Aircon Repair",
+        "Appliance Repair"
+      ],
+      "experience_years": 6,
+      "certifications": "TESDA NC II Electrical Installation",
+      "status": "Busy",
+      "work_position": "Electrician",
+      "work_schedule": "Weekends available",
+      "notes": "Currently on a project until next week",
+      "consent_given": true,
+      "consent_date": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    "w-004": {
+      "skills": [
+        "Sewing / Tailoring",
+        "Beauty Services"
+      ],
+      "experience_years": 10,
+      "certifications": "",
+      "status": "Available",
+      "work_position": "Home-based Tailor",
+      "work_schedule": "Mon–Fri 9am–6pm",
+      "notes": "Accepts rush orders",
+      "consent_given": true,
+      "consent_date": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    "w-005": {
+      "skills": [
+        "Plumbing",
+        "Welding",
+        "Steel Works"
+      ],
+      "experience_years": 20,
+      "certifications": "TESDA NC II Plumbing, NC II SMAW",
+      "status": "Available",
+      "work_position": "Plumber / Welder",
+      "work_schedule": "Mon–Sat 8am–5pm",
+      "notes": "",
+      "consent_given": true,
+      "consent_date": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    "w-006": {
+      "skills": [
+        "Cooking / Catering",
+        "Housekeeping"
+      ],
+      "experience_years": 4,
+      "certifications": "",
+      "status": "Available",
+      "work_position": "Cook / Caterer",
+      "work_schedule": "Flexible, events ok",
+      "notes": "Can handle small events and daily meals",
+      "consent_given": true,
+      "consent_date": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    "7fa45bab-7ccd-41c5-a37c-67ed098db73c": {
+      "skills": [
+        "Carpentry"
+      ],
+      "experience_years": 5,
+      "certifications": "TESDA NC II",
+      "status": "Available",
+      "work_position": "Lead Carpenter",
+      "work_schedule": "Weekends Only",
+      "notes": "I want to apply for work if there is an available occupations",
+      "consent_given": true,
+      "consent_date": "2026-11-24T07:00:18.489Z",
+      "updated_at": "2026-11-24T07:00:18.489Z"
+    }
+  },
+  "jobs": [
+    {
+      "id": "j-001",
+      "title": "House Extension – Carpentry & Masonry",
+      "description": "Need skilled workers for a 2-room house extension.",
+      "skills_needed": [
+        "Carpentry",
+        "Masonry"
+      ],
+      "requester_name": "Mr. Villanueva",
+      "requester_contact": "09170001111",
+      "location": "Purok 4",
+      "urgency": "Normal",
+      "status": "Open",
+      "schedule_date": null,
+      "schedule_time": null,
+      "created_by": "admin-001",
+      "created_at": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    {
+      "id": "j-002",
+      "title": "Caregiver for Elderly Parent",
+      "description": "Live-out caregiver, preferably 5 days a week.",
+      "skills_needed": [
+        "Caregiving",
+        "Elderly Care"
+      ],
+      "requester_name": "Mrs. Lim",
+      "requester_contact": "09182224444",
+      "location": "Sitio Maligaya",
+      "urgency": "Urgent",
+      "status": "Open",
+      "schedule_date": null,
+      "schedule_time": "8:00 AM",
+      "created_by": "admin-001",
+      "created_at": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    {
+      "id": "j-003",
+      "title": "Electrical Rewiring – Old House",
+      "description": "Full rewiring needed for safety compliance.",
+      "skills_needed": [
+        "Electrical"
+      ],
+      "requester_name": "Barangay Hall",
+      "requester_contact": "09173335555",
+      "location": "Barangay Hall area",
+      "urgency": "Normal",
+      "status": "Open",
+      "schedule_date": null,
+      "schedule_time": null,
+      "created_by": "admin-001",
+      "created_at": "2026-11-23T17:38:51.354Z",
+      "updated_at": "2026-11-23T17:38:51.354Z"
+    },
+    {
+      "id": "a8fbcdfc-9409-4c22-a033-1c61a17fccc9",
+      "title": "Carpentry Level 2 - Apartment Building",
+      "description": "Barangay Tiniwisan Area",
+      "skills_needed": [
+        "Carpentry"
+      ],
+      "requester_name": "Dela Muertes",
+      "requester_contact": "09772814213",
+      "location": "Barangay Tiniwisan",
+      "urgency": "Normal",
+      "status": "Open",
+      "schedule_date": "2026-12-15",
+      "schedule_time": "8:00am-12pm",
+      "created_by": "admin-001",
+      "created_at": "2026-11-24T07:03:19.117Z",
+      "updated_at": "2026-11-24T07:03:19.117Z"
+    }
+  ],
+  "applications": [],
+  "settings": {
+    "brgy_name": "Barangay Biringan",
+    "municipality": "Biringan City",
+    "province": "Province of Baterbonia",
+    "contact_person": "Barangay Registry Officer"
+  },
+  "audit": [
+    {
+      "user_id": "d4488058-494d-4429-8b39-e892edb1c97e",
+      "action": "self_register",
+      "details": "jgonz",
+      "created_at": "2026-11-23T17:38:51.577Z"
+    },
+    {
+      "user_id": "admin-001",
+      "action": "login",
+      "details": "",
+      "created_at": "2026-11-23T17:40:35.403Z"
+    },
+    {
+      "user_id": "admin-001",
+      "action": "delete_worker",
+      "details": "d4488058-494d-4429-8b39-e892edb1c97e",
+      "created_at": "2026-11-23T17:40:51.205Z"
+    },
+    {
+      "user_id": "d8a8aadc-448a-4cd2-b632-b25ec4cc96c2",
+      "action": "self_register",
+      "details": "jgonz",
+      "created_at": "2026-11-23T17:43:03.325Z"
+    },
+    {
+      "user_id": "admin-001",
+      "action": "login",
+      "details": "",
+      "created_at": "2026-11-23T17:43:32.084Z"
+    },
+    {
+      "user_id": "admin-001",
+      "action": "delete_worker",
+      "details": "d8a8aadc-448a-4cd2-b632-b25ec4cc96c2",
+      "created_at": "2026-11-23T17:43:41.213Z"
+    },
+    {
+      "user_id": "admin-001",
+      "action": "login",
+      "details": "",
+      "created_at": "2026-11-24T06:42:35.654Z"
+    },
+    {
+      "user_id": "7fa45bab-7ccd-41c5-a37c-67ed098db73c",
+      "action": "self_register",
+      "details": "jgonzales",
+      "created_at": "2026-11-24T06:58:02.181Z"
+    },
+    {
+      "user_id": "7fa45bab-7ccd-41c5-a37c-67ed098db73c",
+      "action": "login",
+      "details": "",
+      "created_at": "2026-11-24T06:58:10.545Z"
+    },
+    {
+      "user_id": "7fa45bab-7ccd-41c5-a37c-67ed098db73c",
+      "action": "upload_photo",
+      "details": "",
+      "created_at": "2026-11-24T06:58:44.415Z"
+    },
+    {
+      "user_id": "7fa45bab-7ccd-41c5-a37c-67ed098db73c",
+      "action": "update_worker_profile",
+      "details": "7fa45bab-7ccd-41c5-a37c-67ed098db73c",
+      "created_at": "2026-11-24T07:00:02.402Z"
+    },
+    {
+      "user_id": "7fa45bab-7ccd-41c5-a37c-67ed098db73c",
+      "action": "update_worker_profile",
+      "details": "7fa45bab-7ccd-41c5-a37c-67ed098db73c",
+      "created_at": "2026-11-24T07:00:18.489Z"
+    },
+    {
+      "user_id": "admin-001",
+      "action": "login",
+      "details": "",
+      "created_at": "2026-11-24T07:00:29.521Z"
+    },
+    {
+      "user_id": "admin-001",
+      "action": "create_job",
+      "details": "a8fbcdfc-9409-4c22-a033-1c61a17fccc9",
+      "created_at": "2026-11-24T07:03:19.117Z"
+    },
+    {
+      "user_id": "admin-001",
+      "action": "upload_photo",
+      "details": "",
+      "created_at": "2026-11-24T07:10:30.757Z"
+    },
+    {
+      "user_id": "admin-001",
+      "action": "update_settings",
+      "details": "",
+      "created_at": "2026-11-24T07:11:45.208Z"
+    },
+    {
+      "user_id": "admin-001",
+      "action": "login",
+      "details": "",
+      "created_at": "2026-11-24T08:12:46.074Z"
+    }
+  ]
+}
