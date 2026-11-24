@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barangay Labor & Skills Registry</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- LOGIN SCREEN -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="login-logo">👷</div>
+      <h1>Barangay Labor & Skills Registry</h1>
+      <p class="subtitle">Local Job Matching System</p>
+
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab active" id="tabLogin" onclick="showAuthTab('login')">Login</button>
+        <button type="button" class="auth-tab" id="tabRegister" onclick="showAuthTab('register')">Create Account</button>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="loginUser" required autocomplete="username" placeholder="admin or your username" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPass" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+        <p id="loginError" class="error-msg"></p>
+      </form>
+
+      <form id="registerForm" class="hidden">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="regName" required placeholder="Juan Dela Cruz" />
+        </div>
+        <div class="form-group">
+          <label>Username *</label>
+          <input type="text" id="regUser" required autocomplete="username" placeholder="choose a username" />
+        </div>
+        <div class="form-group">
+          <label>Password * (min 6 characters)</label>
+          <input type="password" id="regPass" required minlength="6" autocomplete="new-password" />
+        </div>
+        <div class="form-group">
+          <label>Contact Number *</label>
+          <input type="tel" id="regContact" required placeholder="09XXXXXXXXX" />
+        </div>
+        <div class="form-group">
+          <label>Address / Sitio / Purok</label>
+          <input type="text" id="regAddress" placeholder="Purok 3" />
+        </div>
+        <div class="form-group">
+          <label>Main Skills (comma-separated)</label>
+          <input type="text" id="regSkills" placeholder="Carpentry, Plumbing, Caregiving" />
+        </div>
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="regConsent" required />
+            I consent to be listed in the barangay skills registry for local job matching
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+        <p id="registerError" class="error-msg"></p>
+        <p id="registerSuccess" class="success-msg"></p>
+      </form>
+
+      <p class="login-note">Default admin: <strong>admin</strong> / <strong>admin123</strong><br>
+        Workers can create their own account above, or use sample logins (e.g. juan.delacruz / worker123).</p>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="app" class="app hidden">
+    <header class="header">
+      <div class="header-left">
+        <span class="logo-icon">👷</span>
+        <div>
+          <h1 id="brgyTitle">Barangay Skills Registry</h1>
+          <p id="userInfo" class="user-info"></p>
+        </div>
+      </div>
+      <nav id="nav" class="nav"></nav>
+      <button class="btn btn-ghost" onclick="logout()">Logout</button>
+    </header>
+
+    <main class="main">
+      <!-- DASHBOARD -->
+      <section id="panel-dashboard" class="panel">
+        <h2>Dashboard</h2>
+        <div class="stats-grid" id="statsGrid"></div>
+        <div class="grid-2" style="margin-top:1.5rem;">
+          <div class="card">
+            <h3>Quick Actions</h3>
+            <div class="btn-group" id="quickActions"></div>
+          </div>
+          <div class="card">
+            <h3>My Status</h3>
+            <div id="myStatusBox"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORKERS (Admin) -->
+      <section id="panel-workers" class="panel hidden">
+        <div class="panel-header">
+          <h2>Workers Registry</h2>
+          <div class="btn-group">
+            <button class="btn btn-secondary" onclick="exportCsv('workers')">📥 Export CSV</button>
+            <button class="btn btn-secondary" onclick="document.getElementById('importWorkersFile').click()">📤 Import CSV/Excel</button>
+            <input type="file" id="importWorkersFile" accept=".csv,text/csv" style="display:none" onchange="importWorkersCsv(event)" />
+            <button class="btn btn-primary" onclick="openCreateWorker()">+ Add Worker Account</button>
+          </div>
+        </div>
+        <div class="search-bar">
+          <input type="text" id="workerSearch" placeholder="Search name, skill, contact..." oninput="renderWorkers()" />
+          <select id="workerStatusFilter" onchange="renderWorkers()">
+            <option value="">All Status</option>
+            <option>Available</option>
+            <option>Busy</option>
+            <option>Unavailable</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Skills</th>
+                <th>Status</th>
+                <th>Schedule / Position</th>
+                <th>Contact</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="workersBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- JOBS -->
+      <section id="panel-jobs" class="panel hidden">
+        <div class="panel-header">
+          <h2>Job / Service Requests</h2>
+          <div class="btn-group">
+            <button class="btn btn-secondary" id="btnExportJobs" onclick="exportCsv('jobs')" style="display:none;">📥 Export CSV</button>
+            <button class="btn btn-primary" id="btnAddJob" onclick="openJobModal()" style="display:none;">+ Create Job</button>
+          </div>
+        </div>
+        <div class="search-bar">
+          <input type="text" id="jobSearch" placeholder="Search jobs..." oninput="renderJobs()" />
+          <select id="jobStatusFilter" onchange="renderJobs()">
+            <option value="">All</option>
+            <option>Open</option>
+            <option>Filled</option>
+            <option>Closed</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Job</th>
+                <th>Skills Needed</th>
+                <th>Requester</th>
+                <th>Schedule</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="jobsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- APPLICATIONS -->
+      <section id="panel-applications" class="panel hidden">
+        <div class="panel-header">
+          <h2>Applications / Bookings</h2>
+          <div class="btn-group" id="appsHeaderActions"></div>
+        </div>
+        <div id="appsHelp" class="card" style="margin-bottom:1rem;font-size:0.9rem;color:var(--muted);"></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Job</th>
+                <th>Worker</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Applied</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="appsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MY PROFILE (Worker) -->
+      <section id="panel-profile" class="panel hidden">
+        <h2>My Profile</h2>
+        <div class="profile-layout">
+          <div class="card profile-photo-card">
+            <div class="photo-preview" id="photoPreview">
+              <span class="photo-placeholder">No Photo</span>
+            </div>
+            <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="uploadPhoto()" />
+            <button class="btn btn-secondary btn-sm" onclick="document.getElementById('photoInput').click()">Upload Photo</button>
+          </div>
+          <div class="card" style="flex:1;">
+            <h3>Personal Info</h3>
+            <div class="form-row">
+              <label>Full Name</label>
+              <input type="text" id="pFullName" />
+            </div>
+            <div class="form-row two">
+              <div><label>Contact</label><input type="text" id="pContact" /></div>
+              <div><label>Email</label><input type="email" id="pEmail" /></div>
+            </div>
+            <div class="form-row">
+              <label>Address</label>
+              <input type="text" id="pAddress" />
+            </div>
+            <div class="form-row two">
+              <div>
+                <label>Sex</label>
+                <select id="pSex"><option value="">—</option><option>Male</option><option>Female</option></select>
+              </div>
+              <div><label>Age</label><input type="number" id="pAge" min="15" max="99" /></div>
+            </div>
+            <button class="btn btn-primary" onclick="savePersonalInfo()">Save Personal Info</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1.25rem;" id="workerProfileCard">
+          <h3>Work Profile & Availability</h3>
+          <div class="form-row">
+            <label>Skills / Professions (comma or click tags)</label>
+            <div class="skills-picker" id="skillsPicker"></div>
+            <input type="text" id="customSkill" placeholder="Add custom skill + Enter" />
+          </div>
+          <div class="form-row two">
+            <div>
+              <label>Years of Experience</label>
+              <input type="number" id="pExperience" min="0" max="60" />
+            </div>
+            <div>
+              <label>Work Status</label>
+              <select id="pStatus">
+                <option>Available</option>
+                <option>Busy</option>
+                <option>Unavailable</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row two">
+            <div>
+              <label>Work Position / Role</label>
+              <input type="text" id="pPosition" placeholder="e.g. Lead Carpenter, Caregiver" />
+            </div>
+            <div>
+              <label>Work Schedule</label>
+              <input type="text" id="pSchedule" placeholder="e.g. Mon–Fri 8am–5pm, Weekends only" />
+            </div>
+          </div>
+          <div class="form-row">
+            <label>Certifications / TESDA</label>
+            <input type="text" id="pCerts" placeholder="TESDA NC II Carpentry, etc." />
+          </div>
+          <div class="form-row">
+            <label>Notes</label>
+            <textarea id="pNotes" rows="2"></textarea>
+          </div>
+          <div class="form-row">
+            <label class="checkbox-label">
+              <input type="checkbox" id="pConsent" /> I give consent to be listed in the barangay skills registry for local job matching
+            </label>
+          </div>
+          <button class="btn btn-primary" onclick="saveWorkerProfile()">Save Work Profile</button>
+        </div>
+
+        <div class="card" style="margin-top:1.25rem;">
+          <h3>Change Password</h3>
+          <div class="form-row two">
+            <div><label>Current Password</label><input type="password" id="curPass" /></div>
+            <div><label>New Password</label><input type="password" id="newPass" /></div>
+          </div>
+          <button class="btn btn-secondary" onclick="changePassword()">Update Password</button>
+        </div>
+      </section>
+
+      <!-- SETTINGS (Admin) -->
+      <section id="panel-settings" class="panel hidden">
+        <h2>Settings</h2>
+        <div class="card">
+          <div class="form-row">
+            <label>Barangay Name</label>
+            <input type="text" id="sBrgyName" />
+          </div>
+          <div class="form-row two">
+            <div><label>Municipality / City</label><input type="text" id="sMunicipality" /></div>
+            <div><label>Province</label><input type="text" id="sProvince" /></div>
+          </div>
+          <div class="form-row">
+            <label>Contact Person / Registry Officer</label>
+            <input type="text" id="sContactPerson" />
+          </div>
+          <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+        </div>
+        <div class="card" style="margin-top:1rem;">
+          <h3>Printable Consent Form</h3>
+          <p>Open and print the official consent form for workers to sign.</p>
+          <a class="btn btn-secondary" href="consent-form.html" target="_blank">Open Consent Form</a>
+        </div>
+        <div class="card" style="margin-top:1rem;">
+          <h3>Excel / CSV Database Workflow</h3>
+          <p style="font-size:0.9rem;color:var(--muted);margin-bottom:0.75rem;">
+            Manage workers offline in Excel, then import. Or export anytime for reports and backup.
+          </p>
+          <div class="btn-group">
+            <button class="btn btn-secondary" onclick="downloadImportTemplate()">📄 Download Import Template</button>
+            <button class="btn btn-secondary" onclick="document.getElementById('importWorkersFile').click()">📤 Import Workers CSV</button>
+            <button class="btn btn-secondary" onclick="exportCsv('workers')">📥 Export Workers CSV</button>
+            <button class="btn btn-secondary" onclick="exportCsv('jobs')">📥 Export Jobs CSV</button>
+          </div>
+          <p style="font-size:0.8rem;color:var(--muted);margin-top:0.75rem;">
+            In Excel: File → Save As → CSV (Comma delimited). Required columns: <strong>full_name</strong>, <strong>contact</strong>.
+            Optional: username, password, skills (use ; between skills), status, work_position, work_schedule, certifications.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODALS -->
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div class="modal" id="modalContent"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
