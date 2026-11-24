@@ -174,7 +174,7 @@ function logAction(db, userId, action, details = '') {
 app.use(cors());
 app.use(express.json({ limit: '5mb' }));
 app.use('/uploads', express.static(uploadDir));
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
+app.use(express.static(__dirname));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadDir),
@@ -821,7 +821,7 @@ app.post('/api/import/workers', auth('admin'), upload.single('file'), (req, res)
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, () => {
